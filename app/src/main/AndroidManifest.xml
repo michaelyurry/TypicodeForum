@@ -19,6 +19,7 @@
         <activity android:name=".ui.view.DetailPostActivity"/>
         <activity android:name=".ui.view.DetailUserActivity" />
         <activity android:name=".ui.view.DetailPhotoActivity" />
+        <activity android:name=".ui.view.DetailAlbumActivity" />
     </application>
 
 </manifest>

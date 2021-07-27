@@ -25,6 +25,7 @@
             android:gravity="center_vertical"
             app:drawableStartCompat="@mipmap/ic_name"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Name" />
 
@@ -37,6 +38,7 @@
             android:gravity="center_vertical"
             app:drawableStartCompat="@mipmap/ic_email"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_name"
             tools:text="Email" />
 
@@ -51,6 +53,7 @@
             app:drawableStartCompat="@mipmap/ic_address"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_email"
+            app:layout_constraintEnd_toEndOf="parent"
             tools:text="Address \nasdasddsadsa\nsdasdasas\nasdsdadsa" />
 
         <TextView
@@ -63,6 +66,8 @@
             app:drawableStartCompat="@mipmap/ic_work"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_address"
+            app:layout_constraintEnd_toEndOf="parent"
+
             tools:text="Company" />
 
         <TextView

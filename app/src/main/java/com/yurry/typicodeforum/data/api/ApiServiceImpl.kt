@@ -17,8 +17,8 @@ class ApiServiceImpl: ApiService {
         return apiService.getComments(postId)
     }
 
-    override fun getPhotos(): Observable<List<Photo>> {
-        return apiService.getPhotos()
+    override fun getPhotosByAlbumId(albumId: Int): Observable<List<Photo>> {
+        return apiService.getPhotosByAlbumId(albumId)
     }
 
     override fun getPosts(): Observable<List<Post>> {

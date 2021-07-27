@@ -19,8 +19,8 @@ interface ApiService {
     @GET("posts/{postId}/comments")
     fun getComments(@Path("postId") postId: Int): Observable<List<Comment>>
 
-    @GET("photos")
-    fun getPhotos(): Observable<List<Photo>>
+    @GET("albums/{albumId}/photos")
+    fun getPhotosByAlbumId(@Path("albumId") albumId: Int): Observable<List<Photo>>
 
     @GET("posts")
     fun getPosts(): Observable<List<Post>>

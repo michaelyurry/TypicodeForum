@@ -4,14 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.yurry.typicodeforum.data.model.Photo
-import com.yurry.typicodeforum.data.model.User
 import com.yurry.typicodeforum.data.repository.MainRepository
 import com.yurry.typicodeforum.utils.Resource
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class PhotoViewModel(private val mainRepository: MainRepository): ViewModel() {
+class PhotoViewModel(private val mainRepository: MainRepository, private val albumId: Int): ViewModel() {
     private val photos = MutableLiveData<Resource<List<Photo>>>()
     private val compositeDisposable = CompositeDisposable()
 
@@ -22,7 +21,7 @@ class PhotoViewModel(private val mainRepository: MainRepository): ViewModel() {
     private fun fetchPhotos() {
         photos.postValue(Resource.loading())
         compositeDisposable.add(
-            mainRepository.getPhotos()
+            mainRepository.getPhotosFromAlbum(albumId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

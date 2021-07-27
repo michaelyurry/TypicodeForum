@@ -5,17 +5,14 @@ import com.yurry.typicodeforum.data.model.*
 import io.reactivex.Observable
 
 class MainRepository(private val apiHelper: ApiHelper) {
-    fun getAlbums(): Observable<List<Album>> {
-        return apiHelper.getAlbums()
-    }
     fun getAlbumsByUserId(userId: Int): Observable<List<Album>> {
         return apiHelper.getAlbumsByUserId(userId)
     }
     fun getComments(postId: Int): Observable<List<Comment>> {
         return apiHelper.getComments(postId)
     }
-    fun getPhotos(): Observable<List<Photo>> {
-        return apiHelper.getPhotos()
+    fun getPhotosFromAlbum(albumId: Int): Observable<List<Photo>> {
+        return apiHelper.getPhotosByAlbumId(albumId)
     }
     fun getPosts(): Observable<List<Post>> {
         return apiHelper.getPosts()

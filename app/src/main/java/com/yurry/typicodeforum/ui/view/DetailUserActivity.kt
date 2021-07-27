@@ -85,6 +85,8 @@ class DetailUserActivity: AppCompatActivity(), AlbumAdapter.RecyclerViewClickLis
     }
 
     override fun onClick(model: Album) {
-        Log.d("YURRY", "onClick: ${model.title}")
+        val intent = Intent(this, DetailAlbumActivity::class.java)
+        intent.putExtra("albumId", model.id)
+        startActivity(intent)
     }
 }
