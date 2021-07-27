@@ -13,6 +13,9 @@ interface ApiService {
     @GET("albums")
     fun getAlbums(): Observable<List<Album>>
 
+    @GET("users/{userId}/albums")
+    fun getAlbumsByUserId(@Path("userId") userId: Int): Observable<List<Album>>
+
     @GET("posts/{postId}/comments")
     fun getComments(@Path("postId") postId: Int): Observable<List<Comment>>
 
@@ -24,6 +27,9 @@ interface ApiService {
 
     @GET("users")
     fun getUsers(): Observable<List<User>>
+
+    @GET("users/{userId}")
+    fun getUserById(@Path("userId") userId: Int): Observable<User>
 
     companion object Factory {
         fun create():ApiService{

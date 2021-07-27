@@ -12,6 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="4dp"
         android:maxLines="1"
         android:ellipsize="end"
@@ -35,12 +36,13 @@
         style="@style/TextAppearance.AppCompat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_post_body"
-        tools:text="Author"/>
+        android:gravity="center_vertical"
+        tools:text="Author"
+        app:drawableStartCompat="@mipmap/ic_name" />
 
     <TextView
         android:id="@+id/tv_comment_title"
@@ -49,7 +51,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_post_author"
+        app:layout_constraintStart_toStartOf="@+id/tv_post_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_post_author"
         android:maxLines="3"
         android:ellipsize="end"
@@ -58,11 +60,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/commentRecyclerView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_post_author"
-        app:layout_constraintTop_toBottomOf="@id/tv_comment_title"/>
+        app:layout_constraintStart_toStartOf="@+id/tv_post_title"
+        app:layout_constraintTop_toBottomOf="@id/tv_comment_title"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <ProgressBar
         android:id="@+id/progressBar"

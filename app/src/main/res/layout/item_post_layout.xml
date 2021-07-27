@@ -37,23 +37,23 @@
         style="@style/TextAppearance.AppCompat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_body"
+        app:drawableStartCompat="@mipmap/ic_name"
         tools:text="User"/>
 
     <TextView
         android:id="@+id/tv_company"
+        style="@style/TextAppearance.AppCompat"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_username"
-        android:maxLines="3"
-        android:ellipsize="end"
-        tools:text="company"/>
+        app:drawableStartCompat="@mipmap/ic_work"
+        tools:text="Company"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,10 @@ class ApiServiceImpl: ApiService {
         return apiService.getAlbums()
     }
 
+    override fun getAlbumsByUserId(userId: Int): Observable<List<Album>> {
+        return apiService.getAlbumsByUserId(userId)
+    }
+
     override fun getComments(postId: Int): Observable<List<Comment>> {
         return apiService.getComments(postId)
     }
@@ -23,5 +27,9 @@ class ApiServiceImpl: ApiService {
 
     override fun getUsers(): Observable<List<User>> {
         return apiService.getUsers()
+    }
+
+    override fun getUserById(userId: Int): Observable<User> {
+        return apiService.getUserById(userId)
     }
 }

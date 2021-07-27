@@ -23,13 +23,13 @@ data class User(
 
 data class Address(
     @SerializedName("street")
-    val id : String = "",
+    val street : String = "",
     @SerializedName("suite")
-    val userId : String = "",
+    val suite : String = "",
     @SerializedName("city")
     val city : String = "",
     @SerializedName("zipcode")
-    val title : String = "",
+    val zipcode : String = "",
     @SerializedName("geo")
     val geo : Geo
 )

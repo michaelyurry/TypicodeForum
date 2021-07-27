@@ -3,7 +3,7 @@ package com.yurry.typicodeforum.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.yurry.typicodeforum.data.model.MainPost
+import com.yurry.typicodeforum.data.model.ItemPost
 import com.yurry.typicodeforum.data.model.Post
 import com.yurry.typicodeforum.data.model.User
 import com.yurry.typicodeforum.data.repository.MainRepository
@@ -15,7 +15,7 @@ import io.reactivex.schedulers.Schedulers
 
 
 class PostViewModel(private val mainRepository: MainRepository): ViewModel() {
-    private val datas = MutableLiveData<Resource<List<MainPost>>>()
+    private val datas = MutableLiveData<Resource<List<ItemPost>>>()
     private val compositeDisposable = CompositeDisposable()
 
     init {
@@ -37,11 +37,11 @@ class PostViewModel(private val mainRepository: MainRepository): ViewModel() {
         )
     }
 
-    private fun combineData(userList: List<User>, postList: List<Post>): List<MainPost>{
-        val dataList = arrayListOf<MainPost>()
+    private fun combineData(userList: List<User>, postList: List<Post>): List<ItemPost>{
+        val dataList = arrayListOf<ItemPost>()
         for (post in postList){
             val user = userList.find { it.id == post.userId }!!
-            val data = MainPost(post.id, post.title, post.body, post.userId, user.name, user.company.name)
+            val data = ItemPost(post.id, post.title, post.body, post.userId, user.name, user.company.name)
             dataList.add(data)
         }
         return dataList
@@ -52,7 +52,7 @@ class PostViewModel(private val mainRepository: MainRepository): ViewModel() {
         compositeDisposable.dispose()
     }
 
-    fun getDatas(): LiveData<Resource<List<MainPost>>> {
+    fun getDatas(): LiveData<Resource<List<ItemPost>>> {
         return datas
     }
 

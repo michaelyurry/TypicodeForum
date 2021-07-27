@@ -3,33 +3,42 @@ package com.yurry.typicodeforum.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.yurry.typicodeforum.data.model.Album
+import com.yurry.typicodeforum.data.model.ItemUser
 import com.yurry.typicodeforum.data.model.User
 import com.yurry.typicodeforum.data.repository.MainRepository
 import com.yurry.typicodeforum.utils.Resource
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class UserViewModel(private val mainRepository: MainRepository): ViewModel() {
-    private val users = MutableLiveData<Resource<List<User>>>()
+class UserViewModel(private val mainRepository: MainRepository,  private val userId: Int): ViewModel() {
+    private val itemUsers = MutableLiveData<Resource<ItemUser>>()
     private val compositeDisposable = CompositeDisposable()
 
     init {
-        fetchUsers()
+        fetchData()
     }
 
-    private fun fetchUsers() {
-        users.postValue(Resource.loading())
+    private fun fetchData(){
+        itemUsers.postValue(Resource.loading())
         compositeDisposable.add(
-            mainRepository.getUsers()
+            Observable.zip(mainRepository.getUserById(userId),
+                mainRepository.getAlbumsByUserId(userId),
+                {u, a -> combineData(u, a)})
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    users.postValue(Resource.success(it))
-                }, {
-                    users.postValue(Resource.error("Something Went Wrong"))
+                    itemUsers.postValue(Resource.success(it))
+                },{
+                    itemUsers.postValue(Resource.error("Something Went Wrong"))
                 })
         )
+    }
+
+    private fun combineData(user: User, albumList: List<Album>): ItemUser{
+        return ItemUser(user, albumList)
     }
 
     override fun onCleared() {
@@ -37,8 +46,8 @@ class UserViewModel(private val mainRepository: MainRepository): ViewModel() {
         compositeDisposable.dispose()
     }
 
-    fun getUsers(): LiveData<Resource<List<User>>> {
-        return users
+    fun getUser(): LiveData<Resource<ItemUser>> {
+        return itemUsers
     }
 
 }

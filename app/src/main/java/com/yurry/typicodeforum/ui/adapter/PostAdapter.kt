@@ -5,15 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.yurry.typicodeforum.R
-import com.yurry.typicodeforum.data.model.MainPost
+import com.yurry.typicodeforum.data.model.ItemPost
 import kotlinx.android.synthetic.main.item_post_layout.view.*
 
-class PostAdapter(private val posts: ArrayList<MainPost>
+class PostAdapter(private val posts: ArrayList<ItemPost>
 ) : RecyclerView.Adapter<PostAdapter.DataViewHolder>() {
     private var mListener: RecyclerViewClickListener? = null
 
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(post: MainPost, mListener: RecyclerViewClickListener?) {
+        fun bind(post: ItemPost, mListener: RecyclerViewClickListener?) {
             itemView.tv_title.text = post.title
             itemView.tv_body.text = post.body
 
@@ -37,13 +37,13 @@ class PostAdapter(private val posts: ArrayList<MainPost>
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) =
         holder.bind(posts[position], mListener)
 
-    fun addPosts(list: List<MainPost>, listener: RecyclerViewClickListener) {
+    fun addPosts(list: List<ItemPost>, listener: RecyclerViewClickListener) {
         posts.addAll(list)
         mListener = listener
     }
 
     interface RecyclerViewClickListener{
-        fun onClick(model: MainPost)
+        fun onClick(model: ItemPost)
     }
 
 }

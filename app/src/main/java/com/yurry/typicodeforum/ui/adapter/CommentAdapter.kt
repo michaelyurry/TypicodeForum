@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.yurry.typicodeforum.R
 import com.yurry.typicodeforum.data.model.Comment
-import com.yurry.typicodeforum.data.model.MainPost
 import kotlinx.android.synthetic.main.item_comment_layout.view.*
 
 class CommentAdapter(private val comments: ArrayList<Comment>

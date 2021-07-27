@@ -1,5 +1,6 @@
 package com.yurry.typicodeforum.ui.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -18,7 +19,14 @@ import com.yurry.typicodeforum.utils.Status
 import kotlinx.android.synthetic.main.activity_post_detail.*
 
 class DetailPostActivity: AppCompatActivity() {
-    private lateinit var commentViewModel: CommentViewModel
+    private val commentViewModel: CommentViewModel by lazy {
+            ViewModelProviders.of(
+                this,
+                CommentViewModelFactory(
+                ApiHelper(ApiServiceImpl()),
+                intent.getIntExtra("id", 0))
+        ).get(CommentViewModel::class.java)
+    }
     private lateinit var adapter: CommentAdapter
     private var authorId: Int = 0
 
@@ -27,7 +35,6 @@ class DetailPostActivity: AppCompatActivity() {
         setContentView(R.layout.activity_post_detail)
         authorId = intent.getIntExtra("userId", 0)
         setupUI()
-        setupViewModel(intent.getIntExtra("id", 0))
         setupObserver()
     }
 
@@ -45,6 +52,11 @@ class DetailPostActivity: AppCompatActivity() {
             )
         )
         commentRecyclerView.adapter = adapter
+        tv_post_author.setOnClickListener {
+            val intent = Intent(this, DetailUserActivity::class.java)
+            intent.putExtra("userId", authorId)
+            startActivity(intent)
+        }
     }
 
     private fun setupObserver() {
@@ -71,12 +83,5 @@ class DetailPostActivity: AppCompatActivity() {
     private fun renderComments(commentList: List<Comment>) {
         adapter.addComments(commentList)
         adapter.notifyDataSetChanged()
-    }
-
-    private fun setupViewModel(postId: Int) {
-        commentViewModel = ViewModelProviders.of(
-            this,
-            CommentViewModelFactory(ApiHelper(ApiServiceImpl()), postId)
-        ).get(CommentViewModel::class.java)
     }
 }

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.yurry.typicodeforum.R
 import com.yurry.typicodeforum.data.api.ApiHelper
 import com.yurry.typicodeforum.data.api.ApiServiceImpl
-import com.yurry.typicodeforum.data.model.MainPost
+import com.yurry.typicodeforum.data.model.ItemPost
 import com.yurry.typicodeforum.ui.adapter.PostAdapter
 import com.yurry.typicodeforum.ui.base.PostViewModelFactory
 import com.yurry.typicodeforum.ui.viewmodel.PostViewModel
@@ -19,14 +19,18 @@ import com.yurry.typicodeforum.utils.Status
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), PostAdapter.RecyclerViewClickListener {
-    private lateinit var postViewModel: PostViewModel
+    private val postViewModel: PostViewModel by lazy {
+        ViewModelProviders.of(
+            this,
+            PostViewModelFactory(ApiHelper(ApiServiceImpl()))
+        ).get(PostViewModel::class.java)
+    }
     private lateinit var adapter: PostAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setupUI()
-        setupViewModel()
         setupObserver()
     }
 
@@ -63,19 +67,12 @@ class MainActivity : AppCompatActivity(), PostAdapter.RecyclerViewClickListener 
         })
     }
 
-    private fun renderPosts(mainPostList: List<MainPost>) {
-        adapter.addPosts(mainPostList, this)
+    private fun renderPosts(itemPostList: List<ItemPost>) {
+        adapter.addPosts(itemPostList, this)
         adapter.notifyDataSetChanged()
     }
 
-    private fun setupViewModel() {
-        postViewModel = ViewModelProviders.of(
-            this,
-            PostViewModelFactory(ApiHelper(ApiServiceImpl()))
-        ).get(PostViewModel::class.java)
-    }
-
-    override fun onClick(model: MainPost) {
+    override fun onClick(model: ItemPost) {
         val intent = Intent(this, DetailPostActivity::class.java)
         intent.putExtra("id", model.id)
         intent.putExtra("name", model.name)

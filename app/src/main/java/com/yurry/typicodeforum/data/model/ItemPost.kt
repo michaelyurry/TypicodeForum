@@ -1,6 +1,6 @@
 package com.yurry.typicodeforum.data.model
 
-data class MainPost(
+data class ItemPost(
     val id : Int = 0,
     val title : String = "",
     val body : String = "",

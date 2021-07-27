@@ -8,6 +8,9 @@ class MainRepository(private val apiHelper: ApiHelper) {
     fun getAlbums(): Observable<List<Album>> {
         return apiHelper.getAlbums()
     }
+    fun getAlbumsByUserId(userId: Int): Observable<List<Album>> {
+        return apiHelper.getAlbumsByUserId(userId)
+    }
     fun getComments(postId: Int): Observable<List<Comment>> {
         return apiHelper.getComments(postId)
     }
@@ -19,5 +22,8 @@ class MainRepository(private val apiHelper: ApiHelper) {
     }
     fun getUsers(): Observable<List<User>> {
         return apiHelper.getUsers()
+    }
+    fun getUserById(userId: Int): Observable<User> {
+        return apiHelper.getUserById(userId)
     }
 }
