@@ -32,7 +32,7 @@ class UserViewModel(private val mainRepository: MainRepository,  private val use
                 .subscribe({
                     itemUsers.postValue(Resource.success(it))
                 },{
-                    itemUsers.postValue(Resource.error("Something Went Wrong"))
+                    itemUsers.postValue(Resource.error(it.message.toString()))
                 })
         )
     }

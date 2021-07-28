@@ -27,7 +27,7 @@ class CommentViewModel(private val mainRepository: MainRepository, private val p
                 .subscribe({
                     comments.postValue(Resource.success(it))
                 }, {
-                    comments.postValue(Resource.error("Something Went Wrong"))
+                    comments.postValue(Resource.error(it.message.toString()))
                 })
         )
     }

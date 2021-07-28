@@ -10,9 +10,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ApiService {
-    @GET("albums")
-    fun getAlbums(): Observable<List<Album>>
-
     @GET("users/{userId}/albums")
     fun getAlbumsByUserId(@Path("userId") userId: Int): Observable<List<Album>>
 

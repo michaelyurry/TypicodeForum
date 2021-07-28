@@ -27,7 +27,7 @@ class PhotoViewModel(private val mainRepository: MainRepository, private val alb
                 .subscribe({
                     photos.postValue(Resource.success(it))
                 }, {
-                    photos.postValue(Resource.error("Something Went Wrong"))
+                    photos.postValue(Resource.error(it.message.toString()))
                 })
         )
     }

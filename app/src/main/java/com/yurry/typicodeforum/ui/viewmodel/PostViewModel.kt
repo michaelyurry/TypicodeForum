@@ -32,7 +32,7 @@ class PostViewModel(private val mainRepository: MainRepository): ViewModel() {
                 .subscribe({
                     datas.postValue(Resource.success(it))
                 },{
-                    datas.postValue(Resource.error("Something Went Wrong"))
+                    datas.postValue(Resource.error(it.message.toString()))
                 })
         )
     }

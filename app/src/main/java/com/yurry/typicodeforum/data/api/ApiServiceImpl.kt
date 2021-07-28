@@ -5,9 +5,6 @@ import io.reactivex.Observable
 
 class ApiServiceImpl: ApiService {
     private val apiService = ApiService.create()
-    override fun getAlbums(): Observable<List<Album>> {
-        return apiService.getAlbums()
-    }
 
     override fun getAlbumsByUserId(userId: Int): Observable<List<Album>> {
         return apiService.getAlbumsByUserId(userId)
