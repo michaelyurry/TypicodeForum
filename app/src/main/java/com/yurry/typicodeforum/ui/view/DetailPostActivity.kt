@@ -39,6 +39,7 @@ class DetailPostActivity: AppCompatActivity() {
     }
 
     private fun setupUI() {
+        supportActionBar?.title = javaClass.simpleName
         tv_post_title.text = intent.getStringExtra("title")
         tv_post_body.text = intent.getStringExtra("body")
         tv_post_author.text = intent.getStringExtra("name")
@@ -64,12 +65,12 @@ class DetailPostActivity: AppCompatActivity() {
             when (it.status) {
                 Status.SUCCESS -> {
                     progressBar.visibility = View.GONE
-                    commentRecyclerView.visibility = View.VISIBLE
+                    cl_post.visibility = View.VISIBLE
                     it.data?.let { comments -> renderComments(comments) }
                 }
                 Status.LOADING -> {
                     progressBar.visibility = View.VISIBLE
-                    commentRecyclerView.visibility = View.GONE
+                    cl_post.visibility = View.GONE
                 }
                 Status.ERROR -> {
                     //Handle Error

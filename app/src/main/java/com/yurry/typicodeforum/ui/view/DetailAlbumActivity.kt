@@ -35,6 +35,7 @@ class DetailAlbumActivity: AppCompatActivity(), PhotoAdapter.RecyclerViewClickLi
     }
 
     private fun setupUI() {
+        supportActionBar?.title = intent.getStringExtra("albumTitle")
         photoRecyclerView.layoutManager = GridLayoutManager(this, 2)
         adapter = PhotoAdapter(arrayListOf())
         photoRecyclerView.adapter = adapter

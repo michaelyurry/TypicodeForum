@@ -39,6 +39,7 @@ class DetailUserActivity: AppCompatActivity(), AlbumAdapter.RecyclerViewClickLis
     }
 
     private fun setupUI(){
+        supportActionBar?.title = javaClass.simpleName
         albumRecyclerView.layoutManager = LinearLayoutManager(this)
         adapter = AlbumAdapter(arrayListOf())
         albumRecyclerView.addItemDecoration(
@@ -87,6 +88,7 @@ class DetailUserActivity: AppCompatActivity(), AlbumAdapter.RecyclerViewClickLis
     override fun onClick(model: Album) {
         val intent = Intent(this, DetailAlbumActivity::class.java)
         intent.putExtra("albumId", model.id)
+        intent.putExtra("albumTitle", model.title)
         startActivity(intent)
     }
 }

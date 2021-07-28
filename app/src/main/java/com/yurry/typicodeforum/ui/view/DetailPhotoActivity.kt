@@ -10,6 +10,7 @@ class DetailPhotoActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_photo_detail)
+        supportActionBar?.title = intent.getStringExtra("photoTitle")
         Picasso.get().load(intent.getStringExtra("photoUrl")).into(iv_image)
     }
 }
