@@ -16,6 +16,7 @@ class PhotoAdapter(private val photos: ArrayList<Photo>
     class DataViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(photo: Photo, mListener: RecyclerViewClickListener?) {
             Picasso.get().load(photo.thumbnailUrl).into(itemView.iv_photo_image)
+            itemView.iv_photo_title.text = photo.title
             itemView.setOnClickListener{mListener?.onClick(photo)}
         }
     }
