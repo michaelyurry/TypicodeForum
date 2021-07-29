@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.yurry.typicodeforum.R
 import com.yurry.typicodeforum.data.api.ApiHelper
@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_album_detail.*
 
 class DetailAlbumActivity: AppCompatActivity(), PhotoAdapter.RecyclerViewClickListener {
     private val photoViewModel: PhotoViewModel by lazy {
-        ViewModelProviders.of(
+        ViewModelProvider(
             this,
             PhotoViewModelFactory(ApiHelper(ApiServiceImpl()), intent.getIntExtra("albumId", 0))
         ).get(PhotoViewModel::class.java)

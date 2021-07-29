@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yurry.typicodeforum.R
@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_post_detail.*
 
 class DetailPostActivity: AppCompatActivity() {
     private val commentViewModel: CommentViewModel by lazy {
-            ViewModelProviders.of(
+            ViewModelProvider(
                 this,
                 CommentViewModelFactory(
                 ApiHelper(ApiServiceImpl()),

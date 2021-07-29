@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.yurry.typicodeforum.data.api.ApiHelper
 import com.yurry.typicodeforum.data.repository.MainRepository
 import com.yurry.typicodeforum.ui.viewmodel.CommentViewModel
-import com.yurry.typicodeforum.ui.viewmodel.PostViewModel
 
 @Suppress("UNCHECKED_CAST")
 class CommentViewModelFactory(private val apiHelper: ApiHelper, private val postId: Int) : ViewModelProvider.Factory {
