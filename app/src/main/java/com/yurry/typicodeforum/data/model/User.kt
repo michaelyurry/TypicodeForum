@@ -1,7 +1,9 @@
 package com.yurry.typicodeforum.data.model
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class User(
     @SerializedName("id")
     val id : Int = 0,
@@ -21,6 +23,7 @@ data class User(
     val company : Company
 )
 
+@Keep
 data class Address(
     @SerializedName("street")
     val street : String = "",
@@ -34,6 +37,7 @@ data class Address(
     val geo : Geo
 )
 
+@Keep
 data class Geo(
     @SerializedName("lat")
     val lat : String = "",
@@ -41,6 +45,7 @@ data class Geo(
     val lang : String = ""
 )
 
+@Keep
 data class Company(
     @SerializedName("name")
     val name : String = "",

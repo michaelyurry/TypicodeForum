@@ -1,7 +1,9 @@
 package com.yurry.typicodeforum.data.model
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class Comment(
     @SerializedName("id")
     val id : Int = 0,
